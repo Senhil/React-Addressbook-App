@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "name": "Senthil Kumar",
+      "address": "120/5c, ksk nagar",
+      "city": "Coimbatore",
+      "state": "Tamil Nadu",
+      "zipcode": "638656",
+      "phonenumber": "8098757073",
+      "id": 1,
+      "isUpdate": false,
+      "error": {
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipcode": "",
+        "phonenumber": ""
+      }
+    },
+    {
+      "name": "Praveen",
+      "address": "KG Palayam",
+      "city": "Coimbatore",
+      "state": "Tamil Nadu",
+      "zipcode": "638656",
+      "phonenumber": "9876543210",
+      "id": 2,
+      "isUpdate": false,
+      "error": {
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipcode": "",
+        "phonenumber": ""
+      }
+    }
+  ]
+}
