@@ -2,7 +2,8 @@ import React, { useState ,useEffect} from "react";
 import logo from '../../Assets/images/adressbookimage.png'
 import './Adduser.css';
 import axios from 'axios'
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
+import cancelButton from '../../Assets/images/cross.png'
 const AddUser = () => {
   let history = useHistory();
   
@@ -24,6 +25,12 @@ const AddUser = () => {
         errorzipcode:'',
         errorphonenumber:'',
   });
+  const[validation,setvalidaton]=useState({
+    nameerror:false,
+    zipcodeerror:false,
+    phonenumbererror:false,
+
+})
 
   
   const onInputChange =  async event => {
@@ -32,9 +39,12 @@ const AddUser = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    if(validation.nameerror==false && validation.zipcodeerror==false&&validation.phonenumbererror==false){
+        console.log('user'+user)
     await axios.put(`http://localhost:3001/users/${id}`, user);
     history.push("/");
-  };
+    }  
+};
 
     const changeValue = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value })
@@ -48,7 +58,11 @@ const AddUser = () => {
         
             setUser((user)=>({
                 ...user,
-                errorname : '***Enter valid Name'
+                errorname : '***Enter Valid Name'
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : true
             }))
         }
         else{
@@ -56,6 +70,10 @@ const AddUser = () => {
             setUser((user)=>({
                 ...user,
                 errorname : ''
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : false
             }))
         }
     }
@@ -67,7 +85,11 @@ const AddUser = () => {
         
             setUser((user)=>({
                 ...user,
-                errorphonenumber : '***Enter valid Number'
+                errorphonenumber : '***Enter Valid Number'
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : true
             }))
         }
         else{
@@ -75,6 +97,10 @@ const AddUser = () => {
             setUser((user)=>({
                 ...user,
                 errorphonenumber : ''
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : false
             }))
         }
     }
@@ -86,7 +112,11 @@ const AddUser = () => {
         
             setUser((user)=>({
                 ...user,
-                errorzipcode: '***Enter valid zip'
+                errorzipcode: '***Enter Valid ZIP'
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : true
             }))
         }
         else{
@@ -94,6 +124,10 @@ const AddUser = () => {
             setUser((user)=>({
                 ...user,
                 errorzipcode : ''
+            }))
+            setvalidaton((validation)=>({
+                ...validation,
+                nameerror : false
             }))
         }
     }
@@ -131,24 +165,29 @@ const AddUser = () => {
         <div className="form-content">
             <form className="form-head" action="#" onSubmit={onSubmit}>
                 
-                <div className="form-header">PERSON ADDRESS FORM</div>
+            <header className="form-header">
+                            <span>PERSON ADDRESS FORM </span>
+                            <span>
+                            <Link to=''> <img className="cancel-img" src={cancelButton} alt="" /></Link>
+                            </span>
+                        </header>
 
                 <div className="row-content">
-                    <label className="label text" htmlFor="name">FULLNAME</label>
+                    <label className="label text" htmlFor="name">FULL NAME</label><br/>
                     <input className="input" type="text" id="name" name="name" value={user.name} onChange={changeValue} onBlur={firstname_validation} placeholder="Your name.." />
                 <error className="error">{user.errorname}</error>
                 </div>
                 <div className="row-content">
-                    <label className="label text" htmlFor="name">ADRESS</label>
+                    <label className="label text" htmlFor="name">ADDRESS</label>
                     <input className="input" type="text" id="address" name="address" value={user.address} onChange={changeValue} placeholder="Your address.." />
-                {/* <error className="error">{user.error.name}</error> */}
+              
                 </div>
                 <div class="row-content">
                 <div class="row">
                 <div class="label-city">
                         <label class="city" for="city">CITY</label>
                         <input class="input" type="city" id="city" name="city" value={user.city} onChange={changeValue} placeholder="Your city.." />
-                        {/* <error className="error">{user.error.name}</error> */}
+                      
                 </div>
                 
                <div class="label-state">
@@ -156,50 +195,22 @@ const AddUser = () => {
                         <select id="state" name="state" value={user.state} onChange={changeValue}>
                     <option value="">Select State</option>
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                    <option value="Daman and Diu">Daman and Diu</option>
                     <option value="Delhi">Delhi</option>
-                    <option value="Lakshadweep">Lakshadweep</option>
-                    <option value="Puducherry">Puducherry</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Karnataka">Karnataka</option>
                     <option value="Kerala">Kerala</option>
                     <option value="Madhya Pradesh">Madhya Pradesh</option>
                     <option value="Maharashtra">Maharashtra</option>
-                    <option value="Manipur">Manipur</option>
-                    <option value="Meghalaya">Meghalaya</option>
-                    <option value="Mizoram">Mizoram</option>
-                    <option value="Nagaland">Nagaland</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
                     <option value="Tamil Nadu">Tamil Nadu</option>
                     <option value="Telangana">Telangana</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Uttarakhand">Uttarakhand</option>
                     <option value="West Bengal">West Bengal</option>
                 </select>
                 </div>
                 
                 
                     <div class="label-zip">
-                        <label class="zip" for="zipcode">ZIPCODE</label>
+                        <label class="zip" for="zipcode">ZIP-CODE</label>
                         <input class="input" type="zipcode" id="zipcode" name="zipcode" value={user.zipcode} onChange={changeValue} onBlur={zipcode_validation} placeholder="Your zipcode.." />
                         <error className="error">{user.errorzipcode}</error>
-                
+               
                 </div>
                 </div>
                 </div>

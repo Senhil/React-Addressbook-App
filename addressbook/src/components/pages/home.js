@@ -52,7 +52,7 @@ const PayrollForm = () => {
               </div>
               <div className="Angara">
               <div className="length">
-                PERSON DETAILS<br/><div class="bbb">{users.length}</div>
+                PERSON DETAILS<div class="bbb">{users.length}</div>
               </div>
              <table class="table border shadow">
           <thead class="thead-dark">

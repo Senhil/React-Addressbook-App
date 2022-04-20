@@ -103,8 +103,7 @@ width: 100%;
 }
 .label {
     min-width: 140px;
-    
-    
+      
 }
 
 label {
@@ -313,6 +312,7 @@ select {
     text-align: left;
     font-size: 16px;
     font-weight: bold;
+    padding: 18px;
    
     
 }
@@ -321,8 +321,9 @@ select {
     padding: 10px ;
     border: 1px solid blue ;
     border-collapse: separate;
-    border-spacing: 15px;
+    border-spacing: 50px;
     margin-bottom: 2em;
+    padding-left: 190px;
 }
 .row{
     display: flex;
@@ -372,6 +373,6 @@ width: 100%;
 }
 
 .error{
-    font-size: 20px;
+    font-size: 15px;
     color: red;
 }

@@ -35,20 +35,8 @@
         "state": "",
         "zipcode": "",
         "phonenumber": ""
-      }
-    },
-    {
-      "name": "Sssss",
-      "address": "kk nagar",
-      "city": "Coimbatore",
-      "state": "Tamil Nadu",
-      "zipcode": "111111",
-      "phonenumber": "1234567890",
-      "id": 4,
-      "isUpdate": false,
-      "errorname": "",
-      "errorzipcode": "",
-      "errorphonenumber": ""
+      },
+      "errorname": ""
     }
   ]
 }
